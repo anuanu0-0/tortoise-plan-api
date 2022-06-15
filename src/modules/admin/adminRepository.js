@@ -1,6 +1,17 @@
 const pool = require("../../config/dbConfig");
 const logger = require('../../utils/logger');
 
+const getAllPromotions = async () => {
+    try {
+        const query = "SELECT * FROM promotions";
+        const params = [];
+        return await pool.query(query, params);
+    } catch (e) {
+        logger.info("Error in adminRepository getAllPromotions() - " + e.message);
+        throw e;
+    }
+}
+
 const addPlan = async(planDetails) => {
     try {
         const { name, amount, tenure, benefitPercentage, benefitType } = planDetails;
@@ -51,5 +62,6 @@ module.exports = {
     addPlan,
     getPlanById,
     updatePlan,
-    addPromotion
+    addPromotion,
+    getAllPromotions
 }

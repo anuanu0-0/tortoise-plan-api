@@ -24,7 +24,8 @@ CREATE TABLE IF NOT EXISTS promotions(
     promotion_type PromotionType NOT NULL DEFAULT 'NONE',
     no_of_users integer DEFAULT NULL,
     start_date DATE NULL DEFAULT CURRENT_DATE,
-    end_date DATE DEFAULT NULL
+    end_date DATE DEFAULT NULL,
+    total_users integer DEFAULT 0
 ); 
 
 CREATE TABLE IF NOT EXISTS customers(
@@ -49,3 +50,7 @@ CREATE TABLE IF NOT EXISTS customerGoals(
 );
 
 --  timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP
+
+ALTER TABLE promotions 
+ADD COLUMN total_users integer DEFAULT 0;
+

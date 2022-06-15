@@ -4,6 +4,20 @@ const {BENEFIT_TYPE, PROMOTION_TYPE} = require('../../helper/enum');
 const logger = require('../../utils/logger');
 
 
+const getPromotions = async () => {
+    const response = { status: false };
+    try {
+        const promotionsQueryRes = await adminRepository.getAllPromotions(); 
+        response.status = true;
+        response.data = promotionsQueryRes.rows;
+        return response;
+    } catch (e) {
+        logger.info("Error in adminService getPromotions() - " + e.message);
+        response.message = e.message;
+        return response;
+    }
+}
+
 const createPlan = async(planDetails) => {
     const response = { status: false };
     try {
@@ -106,5 +120,6 @@ const createPromotion = async(promotionDetails) => {
 module.exports = {
     createPlan, 
     createPromotion,
-    checkPlanValidity
+    checkPlanValidity,
+    getPromotions
 }

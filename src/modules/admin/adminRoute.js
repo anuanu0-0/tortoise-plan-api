@@ -13,4 +13,6 @@ const adminController = require("./adminController");
 router.post('/create/plan', adminController.createPlan);
 router.post('/create/promotion', adminController.createPromotion);
 
+router.get('/promotion', adminController.getPromotions);
+
 module.exports = router;
